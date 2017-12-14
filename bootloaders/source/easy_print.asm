@@ -1,26 +1,32 @@
 [org 0x7c00]
 
-mov ah, 0x0e
-
-mov si, var1
 
 
 printSI:
+	pusha
+
+	mov ah, 0x0e
 	lodsb
 	
-	cmp al, 0xeb
+	cmp al, 0
 	je end
 
 	int 0x10
 	jmp printSI
-
-var1:
-	db 'Hello Sebastian,'
-	dw 0x0a0a
-	db 'welcome back'
+	popa
 
 end:
-	jmp $
+	ret
 
-	times 510-($-$$) db 0
-	dw 0xaa55
+
+print_nl:
+	pusha
+	
+	mov ah, 0x0e
+	mov al, 0x0a
+	int 0x10
+	mov al, 0d
+	int 0x10
+
+	popa
+	ret
