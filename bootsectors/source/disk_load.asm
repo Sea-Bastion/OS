@@ -25,16 +25,12 @@ disk_error:
 	mov si, DISK_ERROR
 	call printS
 	call print_nl
-	push ax
-	ror ax, 4
-	and ax, 0x00ff
-	mov si, ax
-	pop ax
+	mov dl, al
 	call printSHex
 	jmp end_loop
 
 sector_error:
-	mov si, SECT_ERROR
+	mov dx, SECT_ERROR
 	call printS
 	jmp end_loop
 

@@ -6,13 +6,18 @@ printS:
 	pusha
 
 	mov ah, 0x0e
+
+	mov si, dx
+
+printloop:
+
 	lodsb
 	
 	cmp al, 0
 	je end
 
 	int 0x10
-	jmp printS
+	jmp printloop
 
 
 printSHex:
