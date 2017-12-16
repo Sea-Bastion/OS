@@ -27,9 +27,9 @@ printSHex:
 
 Hexloop:
 	cmp cx, 4
-	je end
+	je hexend
 
-	mov ax, si
+	mov ax, dx
 	and ax, 0x000f
 	add al, 0x30
 	cmp al, 0x39
@@ -40,11 +40,15 @@ Hex2:
 	mov bx, HEXOUT + 5
 	sub bx, cx
 	mov [bx], al
-	ror bx, 4
+	ror dx, 4
 
 	add cx, 1
 	jmp Hexloop
 	
+hexend:
+	mov dx, HEXOUT
+	call printS
+
 
 end:
 	popa
@@ -57,10 +61,10 @@ print_nl:
 	mov ah, 0x0e
 	mov al, 0x0a
 	int 0x10
-	mov al, 0d
+	mov al, 0x0d
 	int 0x10
 
 	popa
 	ret
 
-HEXOUT: dw 0x0000
+HEXOUT: dw '0x0000', 0
