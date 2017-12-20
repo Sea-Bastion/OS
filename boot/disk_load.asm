@@ -40,4 +40,4 @@ SECT_ERROR: db 'Incorrect number of sectors read', 0
 end_loop:
 	jmp $
 
-%include 'source/easy_print.asm'
+%include 'asm/easy_print.asm'

@@ -6,21 +6,23 @@ bg equ 0x0f
 print32:
 	pusha
 
-	mov edx, VRAM
+	mov edx, VRAM	
 
-printloop:
+	add edx, eax
+
+print32loop:
 	mov al, [ebx]
 	mov ah, bg
 
 	cmp al, 0
-	je end
+	je print32end
 	
 	mov [edx], ax
 
 	add ebx, 1
 	add edx, 2
-	jmp printloop
+	jmp print32loop
 
-end:
+print32end:
 	popa
 	ret

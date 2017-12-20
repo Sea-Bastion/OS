@@ -8,7 +8,7 @@ call printSI
 
 jmp $
 
-%include "source/easy_print.asm"
+%include "asm/easy_print.asm"
 
 
 text:
